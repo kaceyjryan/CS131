@@ -1,0 +1,34 @@
+This homework assignment was extremely difficult for me. The troubles came 
+from implementation of parse_prefix, while convert_grammar was fairly simple.
+My parse_prefix function currently does not work as intended by the spec. 
+It returns None when it is supposed to return None and it returns Some when 
+it is supposed to return Some, but the ordering of the derivatives is causing 
+it to fail most of the test cases. My test cases do a good job of showing how
+ it only handles the simplistic grammar parsing correctly (test_3). Any addition
+ of order in tokens or symbols causes my returned ordering to fail exact 
+comparison tests (test_1 and test_2). The issue lies in the fact that I never 
+correctly got the internal acceptor to work. I noted in my code where I was 
+working on implementing it but overall it was not progressing as I expected. 
+With the external acceptor, my code works as described. It returns the correct
+ values for the derivative, just not in the correct order. My code is commented
+ fairly well to describe how I went about the breakdown of this homework. Any
+ code that requires the use of an internal acceptor or needs to backtrack to
+ find a correct path will fail. I am still trying to get the backtracking to
+ work but I’m submitting this now with the possibility of not completing it 
+so I have this unfinished code in on time. 
+
+A break down of how I went about solving this problem in general. My parse_prefix
+ function  has 4 helper functions that help to check the rules and analyze 
+possible accepts. I have two matcher functions for AND and OR. The function 
+check_or calls check_and to build the derivative and see if anything at all 
+accepts. check_and analyzes at the head and is supposed to recursively call 
+on the tail to see any possible accepts but this was not implemented correctly.
+ To analyze the head, check_and uses analyze_rules which should have the call
+ to the internal acceptor but once again I could not get this working correctly
+ as it continued to return with improper accepts from a call to check_and. 
+Instead, these just return. My parse_prefix uses these functions by organizing 
+the grammar properly then calling start_checks which is a helper function that 
+merely starts the checks to allow for a restart when analyze_rules leads to a 
+nonterminal. My code is commented to help understand this organization. Hopefully
+ I can solve my issues and resubmit my code but for now this should be enough 
+for significant partial credit.

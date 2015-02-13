@@ -1,0 +1,62 @@
+My implementations for the seven functions work and pass all the provided 
+test cases as well as my own. I have yet to find errors in my code that do 
+not follow the specs provided however they may exist.
+The functions were implemented as follows:
+Subset: For this function I use a base case of a being the empty set and I use 
+this to call subset recursively. I check the head of a to see if it is a 
+member of be and then I call the tail of a with subset once again to check 
+every member of a until a is empty.
+
+proper_subset: For this function I simply use the subset function and check 
+if a is a subset of b providing that b is not a subset of a. If this were 
+true it would mean the subsets are equal (this idea is used in the next 
+function). So this shows that a is a subset of b but a is not b (which is a 
+proper subset).
+
+equal_sets: for equal sets I use the idea above. First I check if both are 
+empty which is the base case for equal_sets and if they are it is true, 
+otherwise I check if a is a subset of b and b is a subset of a because this 
+would only be true if they were equal.
+
+set_diff: For this function I utilize the filter function. Simply I filter 
+list a by the function that the element of a is not a member of b. This 
+creates a separate list of the elements that do not exist in b.
+
+computed_fixed_point: This function is a recursive one with a base case of 
+(eq x (f x)). Once a value of x is found where it equals f x as well, it 
+returns that x. Otherwise it calls itself with f x. This will continually 
+evaluate the function on itself until two consecutive values are equal.
+
+computed_periodic_point: This function was complicated for me, so I made 
+the problem easier by implementing it first with an added list as a parameter 
+of a helper function to keep a memory of past values. I created a helper 
+function which had a list of all the recursive results of f x for all the 
+values. Every time this was called, it would check the list for the value 
+that was some period away and see if they were equal, if they were then it 
+returned that value otherwise it called itself again. I didn’t believe this 
+was a good implementation as it created a separate data structure. The second 
+way I implemented it was much more effective. I had a separate function still 
+which recursively called itself nesting the function and decremented p. Once p
+ was 0 it returned the evaluated result of f^p (x) meaning if p was 3 it 
+returned f f f x. This value was then used in comparison in the original 
+function and if this result equaled x then it returned that value, otherwise 
+it called compute_periodic_point once again with the value f x instead of x, 
+Which restarted the process with the next value in line.
+
+filter_blind_alleys: To do this function I had filter_blind_alleys start with 
+an empty list and populate this list with the base terminals. Then I would 
+recursively call with this list checking the rules with nonterminals that lead 
+to these terminals on the list adding terminals until no more are added. This 
+means we filled this list completely by finding the terminating rules. Finally 
+I would reorder and organize the grammar to return.
+To implement this I had 4 helper functions to help populate the terminal list, 
+identify the terminals, parse the rules, and utility functions to help write 
+filter_blind_alleys. These four helper functions are described inline in code 
+comments as well.
+
+I believe many of my solutions may be inefficient for their purpose as well 
+as overkill. The weakness in my code is my lack of understanding of many 
+library functions which may exist or may have helped better organize or 
+efficiently write these functions. I attempted to get a good understanding of 
+the List functions but I’m sure there were multiple ways to use those 
+functions to better complete this homework.

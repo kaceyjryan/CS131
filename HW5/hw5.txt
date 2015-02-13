@@ -1,0 +1,25 @@
+	I originally thought that backtracking was going to be implemented 
+by replacing all accept functions with continuations. To do this, 
+I would replace accepts with call/cc. This solution turned out to 
+be much more time consuming and more difficult than I originally 
+suspected. Altering code that I did not write seemed like far too much
+work and I did not even know if this would work in the long run.
+	Rethinking through the code’s execution, I realized an easier
+way. There was somewhat of a bottleneck in the design behind the 
+accept implementation in the provided hint code in that anytime 
+it is called it is because a match is found. This could be utilized
+ to simplify my continuation solution. Instead of replacing all 
+accepts with call/cc, I could simply rewrite accept with a “define”
+ statement that would return the solution in a continuation to the 
+point that accept was originally called.
+	The new accept procedure would be the base of my newly 
+structured code for hw5.scm and the remainder of the code would be 
+the hint code. The next step was to fix the number of parameters 
+accepted by make-matcher as the one in the hint code took 2 parameters.
+ I did this through a simple port definition and renamed the “make-matcher” 
+function from the hint code. Overall, my code had a simple design 
+of breaking up the DNA patterns and making matchers (provided by the hint code)
+ for these and then implementing the backtracking through the accept redefinition.
+Everything works as expected with make-matcher at the top level accepting 
+one parameter (pat). The solution was done in about 8 lines of code and was not as
+complicated as it originally seemed.

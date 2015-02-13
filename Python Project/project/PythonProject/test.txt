@@ -1,0 +1,18 @@
+Just some test cases:
+
+IAMAT kiwi.cs.ucla.edu +34.068930-118.445127 1400794645.392014450
+WHATSAT kiwi.cs.ucla.edu 10 5
+
+In order to test my code, run the command: twistd -n -y serverherd.py
+
+Then open another client and telnet to port 12500 - 12504 and start sending
+commands.
+
+The log is stored in serverherd.log through the logging function of python.
+
+Everything is implemented as the spec states although I had a little trouble
+formatting the json output perfectly with manually outputting every element of
+the json_data. This would be possible but not very robust and time consumingly
+unnecessary so I decided against it. I'd rather leave it in the efficient
+robust  manner with only the "types" portion being formatted incorrectly than
+the other way around.  
